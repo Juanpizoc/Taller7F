@@ -23,7 +23,6 @@ public class TallerCuatroService {
     private TallerCuatroRepository repository;
 
     public boolean validarContrasena(String usuario, String contrasena) {
-        // Configurar el SimpleJdbcCall para llamar a la función PL/SQL
         SimpleJdbcCall jdbcCall = new SimpleJdbcCall(dataSource)
                 .withFunctionName("VALIDAR_CONTRASENA");
 
@@ -31,7 +30,6 @@ public class TallerCuatroService {
         params.put("p_usuario", usuario);
         params.put("p_contrasena", contrasena);
 
-        // Ejecutar la función y obtener el resultado como un número
         Number resultado = jdbcCall.executeFunction(Number.class, params);
         return resultado.intValue() == 1;  
     }
